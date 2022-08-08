@@ -10,6 +10,8 @@ jobs:
         with:
           node-version: '16.x'
           cache: npm
-      - run: make setup
+      - run: npm install
+      - run: npm run build
+#      - run: make setup
       - run: make test
       - run: make lint
