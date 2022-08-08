@@ -1,8 +1,10 @@
+name: first-action
+# on – определяет события, которые запускают воркфлоу
 # Trigger the workflow on push or pull request
 on:
   - push
   - pull_request
-  -
+
 # Пример для проекта на Node.js
 jobs:
   build: # имя взято для примера
@@ -13,12 +15,14 @@ jobs:
       - uses: actions/checkout@v2
       # Устанавливаем Node.js
       - uses: actions/setup-node@v1
-      # Ставим зависимости
-      - run: npm install
-      # Запускаем линтер
-      - run: npm test
-      # Запускаем тесты
-      # у шагов может быть имя, иногда это помогает отладке
-      # имя выводится на Github при просмотре сборки
-      - name: run tests
-        run: npm test # name и run относятся к одной задаче, поэтому дефис ставится только перед name
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
